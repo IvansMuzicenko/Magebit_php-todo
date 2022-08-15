@@ -1,0 +1,62 @@
+.container {
+  margin: auto 25%;
+}
+.sectionName {
+  margin: 1rem 0;
+  display: flex;
+}
+
+hr {
+  display: inline-block;
+  flex-grow: 1;
+}
+.inputGroup {
+  margin-left: 2.5rem;
+}
+
+#itemInput {
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+}
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  background-color: blue;
+  color: white;
+}
+ul {
+  color: blue;
+}
+li {
+  list-style: none;
+}
+.checked {
+  list-style: url("/src/img/check.png");
+}
+#complSwitch {
+  display: grid;
+  flex-direction: row;
+  justify-items: flex-end;
+  text-decoration: underline dotted;
+}
+#myList li:hover {
+  list-style-image: url("/src/img/remove.png");
+  text-decoration: underline;
+}
+.friendsList li:hover {
+  list-style-image: url("/src/img/plus.png");
+  text-decoration: underline;
+}
+#complSwitch:hover {
+  text-decoration: underline 1px;
+}
+.complForm {
+  display: grid;
+  margin: auto;
+  justify-items: end;
+}
+#complArea {
+  resize: vertical;
+  height: 10rem;
+  min-width: 80%;
+}
