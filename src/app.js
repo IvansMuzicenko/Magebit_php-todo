@@ -5,7 +5,7 @@ const itemInput = document.querySelector("#itemInput");
 const addBtn = document.querySelector("#addBtn");
 let allItems = [];
 
-fetch("http://web.local/")
+fetch("http://localhost/Magebit_php-todo/index.php")
   .then(async (response) => {
     return await response.json();
   })
@@ -25,7 +25,7 @@ const addItem = (item) => {
   myList.append(newItem);
   const data = new FormData();
   data.set("newItem", item);
-  fetch("http://web.local/", {
+  fetch("http://localhost/Magebit_php-todo/index.php", {
     method: "POST",
     body: data,
   });
@@ -61,7 +61,7 @@ myList.addEventListener("click", (e) => {
   const targetItem = allItems.indexOf(e.target.innerText);
   const data = new FormData();
   data.set("removeItem", e.target.innerText);
-  fetch("http://web.local/", {
+  fetch("http://localhost/Magebit_php-todo/index.php", {
     method: "POST",
     body: data,
   });
