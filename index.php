@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
 
-const DATA_FILE = "/data.json";
+const DATA_FILE = "data.json";
 
 // url
 
