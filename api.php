@@ -4,7 +4,6 @@ header('Content-Type: application/json');
 
 const DATA_FILE = "data.json";
 
-// url
 
 $data = [];
 
