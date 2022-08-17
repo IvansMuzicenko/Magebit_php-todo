@@ -5,7 +5,7 @@ const itemInput = document.querySelector("#itemInput");
 const addBtn = document.querySelector("#addBtn");
 let allItems = [];
 
-fetch("index.php?api-name=get-todo")
+fetch("api.php?api-name=get-todo")
   .then(async (response) => {
     return await response.json();
   })
@@ -16,19 +16,21 @@ fetch("index.php?api-name=get-todo")
       allItems = [];
     }
     allItems = allItems.map((el) => el.toString());
-    allItems.forEach((item) => addItem(item));
+    allItems.forEach((item) => addItem(item, true));
   });
 
-const addItem = (item) => {
+const addItem = (item, recreate) => {
   const newItem = document.createElement("li");
   newItem.append(item);
   myList.append(newItem);
-  const data = new FormData();
-  data.set("newItem", item);
-  fetch("index.php?api-name=add-todo", {
-    method: "POST",
-    body: data,
-  });
+  if (!recreate) {
+    const data = new FormData();
+    data.set("newItem", item);
+    fetch("api.php?api-name=add-todo", {
+      method: "POST",
+      body: data,
+    });
+  }
 };
 
 const validateItem = (item) => {
@@ -61,7 +63,7 @@ myList.addEventListener("click", (e) => {
   const targetItem = allItems.indexOf(e.target.innerText);
   const data = new FormData();
   data.set("removeItem", e.target.innerText);
-  fetch("index.php?api-name=remove-todo", {
+  fetch("api.php?api-name=remove-todo", {
     method: "POST",
     body: data,
   });

@@ -1,4 +1,5 @@
 <?php
+require "Tasks.php";
 header('Content-Type: application/json');
 
 const DATA_FILE = "data.json";
@@ -6,13 +7,10 @@ const DATA_FILE = "data.json";
 // url
 
 $data = [];
-if (file_exists(DATA_FILE)) {
-    $content = file_get_contents(DATA_FILE);
-    $data = json_decode($content, true);
-    if (!is_array($data)) {
-        $data = [];
-    }
-}
+
+$tasks = new Tasks();
+
+$data = $tasks->getAllTasks();
 
 
 $output = ['status' => false];
@@ -24,28 +22,24 @@ if (isset($_GET["api-name"])) {
     switch ($_GET["api-name"]) {
         case 'add-todo':
             if (isset($_POST["newItem"]) && !in_array($_POST["newItem"], $data)) {
-                $data[] = $_POST["newItem"];
-                $content = json_encode($data);
-                file_put_contents(DATA_FILE, $content);
+                $tasks->addTask($_POST['newItem']);
+                $data = $tasks->getAllTasks();
                 $output = [
                     'status' => true,
                     'message' => 'new item added',
-                    "data" => $content
+                    "data" => $data
                 ];
             }
             break;
 
         case 'remove-todo':
             if (isset($_POST['removeItem'])) {
-                $data = array_flip($data);
-                unset($data[$_POST['removeItem']]);
-                $data = array_keys($data);
-                $content = json_encode($data);
-                file_put_contents(DATA_FILE, $content);
+                $tasks->deleteTask($_POST['removeItem']);
+                $data = $tasks->getAllTasks();
                 $output = [
                     'status' => true,
                     'message' => 'item removed',
-                    "data" => $content
+                    "data" => $data
                 ];
             }
             break;
