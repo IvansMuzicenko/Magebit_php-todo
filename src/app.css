@@ -31,7 +31,7 @@ li {
   list-style: none;
 }
 .checked {
-  list-style: url("/src/img/check.png");
+  list-style: url("./img/check.png");
 }
 #complSwitch {
   display: grid;
@@ -40,11 +40,11 @@ li {
   text-decoration: underline dotted;
 }
 #myList li:hover {
-  list-style-image: url("/src/img/remove.png");
+  list-style-image: url("./img/remove.png");
   text-decoration: underline;
 }
 .friendsList li:hover {
-  list-style-image: url("/src/img/plus.png");
+  list-style-image: url("./img/plus.png");
   text-decoration: underline;
 }
 #complSwitch:hover {
